@@ -30,10 +30,21 @@ function updateDownloadButton() {
         let platform = 'linux-amd64';
         if (os === 'Windows') platform = 'windows-amd64';
         else if (os === 'macOS') platform = 'darwin-amd64';
-        
-        downloadBtn.onclick = () => {
+
+        downloadBtn.onclick = (e) => {
+            e.preventDefault();
             trackDownload(platform);
-            window.location.href = `https://github.com/RahulGS02/nsha-tool/releases/latest/download/nsha-${platform}${os === 'Windows' ? '.exe' : ''}`;
+            const fileName = `nsha-${platform}${os === 'Windows' ? '.exe' : ''}`;
+            const downloadUrl = `https://github.com/RahulGS02/nsha-tool/releases/latest/download/${fileName}`;
+
+            // Create temporary anchor element for direct download
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+            link.download = fileName;
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         };
     }
 }
@@ -124,9 +135,21 @@ function setupInstallationTabs() {
 function setupDownloadTracking() {
     document.querySelectorAll('.btn-download').forEach(button => {
         button.addEventListener('click', (e) => {
+            e.preventDefault();
             const platform = button.getAttribute('data-platform');
             trackDownload(platform);
-            button.href = `https://github.com/RahulGS02/nsha-tool/releases/latest/download/nsha-${platform}${platform.includes('windows') ? '.exe' : ''}`;
+
+            const fileName = `nsha-${platform}${platform.includes('windows') ? '.exe' : ''}`;
+            const downloadUrl = `https://github.com/RahulGS02/nsha-tool/releases/latest/download/${fileName}`;
+
+            // Create temporary anchor element for direct download
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+            link.download = fileName;
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         });
     });
 }
