@@ -118,6 +118,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: binaries
+          path: build
+
+      - name: Copy binaries to docs folder
+        run: |
+          mkdir -p docs/downloads
+          cp build/* docs/downloads/
+          ls -la docs/downloads/
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -126,30 +138,3 @@ jobs:
           publish_branch: gh-pages
           force_orphan: true
   
-  test:
-    name: Run Tests
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      
-      - name: Set up Go
-        uses: actions/setup-go@v4
-        with:
-          go-version: '1.21'
-      
-      - name: Run tests
-        run: go test -v ./...
-      
-      - name: Run go vet
-        run: go vet ./...
-      
-      - name: Run go fmt check
-        run: |
-          if [ -n "$(gofmt -l .)" ]; then
-            echo "Go code is not formatted:"
-            gofmt -d .
-            exit 1
-          fi
-

@@ -32,10 +32,10 @@ function updateDownloadButton() {
         else if (os === 'macOS') platform = 'darwin-amd64';
 
         const fileName = `nsha-${platform}${os === 'Windows' ? '.exe' : ''}`;
-        const downloadUrl = `https://github.com/RahulGS02/nsha-tool/releases/latest/download/${fileName}`;
 
-        // Set the href attribute
-        downloadBtn.href = downloadUrl;
+        // Set the href attribute to local downloads folder
+        downloadBtn.href = `downloads/${fileName}`;
+        downloadBtn.download = fileName;
 
         // Track download on click
         downloadBtn.onclick = () => {
