@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NSHA - Null SHA Fixer. A powerful CLI tool to detect and fix null SHA issues in Git repositories.">
+    <title>NSHA - Null SHA Fixer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-tools"></i>
+                <span>NSHA</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#download">Download</a></li>
+                <li><a href="#demo">Demo</a></li>
+                <li><a href="#docs">Docs</a></li>
+                <li><a href="https://github.com/RahulGS02/nsha-tool" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>NSHA - Null SHA Fixer</h1>
+                <p class="hero-subtitle">A powerful CLI tool to detect and fix null SHA issues in Git repositories</p>
+                <div class="hero-buttons">
+                    <button id="download-primary" class="btn btn-primary">
+                        <i class="fas fa-download"></i> Download for <span id="os-name">Your OS</span>
+                    </button>
+                    <a href="#demo" class="btn btn-secondary">
+                        <i class="fas fa-play"></i> Try Demo
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <i class="fas fa-download"></i>
+                        <span id="total-downloads">Loading...</span>
+                        <small>Downloads</small>
+                    </div>
+                    <div class="stat">
+                        <i class="fab fa-github"></i>
+                        <span id="github-stars">Loading...</span>
+                        <small>Stars</small>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-code-branch"></i>
+                        <span>v1.3.0</span>
+                        <small>Latest Version</small>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-terminal">
+                <div class="terminal-header">
+                    <span class="terminal-dot red"></span>
+                    <span class="terminal-dot yellow"></span>
+                    <span class="terminal-dot green"></span>
+                    <span class="terminal-title">Terminal</span>
+                </div>
+                <div class="terminal-body">
+                    <div class="terminal-line">$ nsha diagnose</div>
+                    <div class="terminal-line output">[STEP 1] Diagnosing repository...</div>
+                    <div class="terminal-line output">[WARNING] Found 3 issue(s):</div>
+                    <div class="terminal-line output">  1. [null-sha] refs/tags/null-tag</div>
+                    <div class="terminal-line output">  2. [null-sha] refs/heads/broken-branch</div>
+                    <div class="terminal-line output">  3. [missing-commit] 0000000001</div>
+                    <div class="terminal-line">$ nsha fix --yes</div>
+                    <div class="terminal-line output">[SUCCESS] Fixed 3 issue(s)!</div>
+                    <div class="terminal-line cursor">_</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <h3>Cross-Platform</h3>
+                    <p>Works seamlessly on Windows, Linux, and macOS. Supports both Intel and ARM architectures.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Safe & Reliable</h3>
+                    <p>Automatic backups before any changes. Dry-run mode to preview changes before applying.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Fast Performance</h3>
+                    <p>Written in Go for maximum performance. Efficiently handles large repositories.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-terminal"></i>
+                    </div>
+                    <h3>Easy to Use</h3>
+                    <p>Simple commands: diagnose, fix, verify. Beautiful CLI with colored output.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>Detailed Logging</h3>
+                    <p>Comprehensive logs and reports. Complete audit trail of all operations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Comprehensive Fixes</h3>
+                    <p>Fixes null SHA references, missing commits, broken trees, and corrupted objects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="download">
+        <div class="container">
+            <h2 class="section-title">Download</h2>
+            <p class="section-subtitle">Choose your platform and start fixing null SHA issues today</p>
+
+            <div class="download-grid">
+                <div class="download-card">
+                    <div class="download-icon">
+                        <i class="fab fa-windows"></i>
+                    </div>
+                    <h3>Windows</h3>
+                    <div class="download-buttons">
+                        <a href="#" class="btn btn-download" data-platform="windows-amd64">
+                            <i class="fas fa-download"></i> AMD64
+                        </a>
+                        <a href="#" class="btn btn-download" data-platform="windows-arm64">
+                            <i class="fas fa-download"></i> ARM64
+                        </a>
+                    </div>
+                    <small class="download-info">Windows 10/11</small>
+                </div>
+
+                <div class="download-card">
+                    <div class="download-icon">
+                        <i class="fab fa-linux"></i>
+                    </div>
+                    <h3>Linux</h3>
+                    <div class="download-buttons">
+                        <a href="#" class="btn btn-download" data-platform="linux-amd64">
+                            <i class="fas fa-download"></i> AMD64
+                        </a>
+                        <a href="#" class="btn btn-download" data-platform="linux-arm64">
+                            <i class="fas fa-download"></i> ARM64
+                        </a>
+                    </div>
+                    <small class="download-info">Ubuntu, Debian, CentOS, Fedora</small>
+                </div>
+
+                <div class="download-card">
+                    <div class="download-icon">
+                        <i class="fab fa-apple"></i>
+                    </div>
+                    <h3>macOS</h3>
+                    <div class="download-buttons">
+                        <a href="#" class="btn btn-download" data-platform="darwin-amd64">
+                            <i class="fas fa-download"></i> Intel
+                        </a>
+                        <a href="#" class="btn btn-download" data-platform="darwin-arm64">
+                            <i class="fas fa-download"></i> Apple Silicon
+                        </a>
+                    </div>
+                    <small class="download-info">macOS 10.15+</small>
+                </div>
+            </div>
+
+            <div class="installation-guide">
+                <h3>Quick Installation</h3>
+                <div class="install-tabs">
+                    <button class="tab-btn active" data-tab="windows">Windows</button>
+                    <button class="tab-btn" data-tab="linux">Linux</button>
+                    <button class="tab-btn" data-tab="macos">macOS</button>
+                </div>
+                <div class="tab-content active" id="windows-tab">
+                    <pre><code># Download the executable
+# Move to a directory in your PATH
+# Or run directly: .\nsha.exe --help</code></pre>
+                </div>
+                <div class="tab-content" id="linux-tab">
+                    <pre><code># Download the binary
+chmod +x nsha-linux-amd64
+sudo mv nsha-linux-amd64 /usr/local/bin/nsha
+nsha --help</code></pre>
+                </div>
+                <div class="tab-content" id="macos-tab">
+                    <pre><code># Download the binary
+chmod +x nsha-darwin-amd64
+sudo mv nsha-darwin-amd64 /usr/local/bin/nsha
+nsha --help</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Demo Section -->
+    <section id="demo" class="demo">
+        <div class="container">
+            <h2 class="section-title">Live Demo</h2>
+            <p class="section-subtitle">Try NSHA commands in an interactive playground</p>
+
+            <div class="demo-terminal">
+                <div class="terminal-header">
+                    <span class="terminal-dot red"></span>
+                    <span class="terminal-dot yellow"></span>
+                    <span class="terminal-dot green"></span>
+                    <span class="terminal-title">Interactive Demo</span>
+                </div>
+                <div class="terminal-body" id="demo-terminal-body">
+                    <div class="terminal-line">Welcome to NSHA Interactive Demo!</div>
+                    <div class="terminal-line">Try these commands: diagnose, fix, verify, help</div>
+                    <div class="terminal-line">&nbsp;</div>
+                    <div class="terminal-input-line">
+                        <span class="prompt">$ nsha </span>
+                        <input type="text" id="demo-input" class="terminal-input" placeholder="Type a command..." autocomplete="off">
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-commands">
+                <h3>Quick Commands</h3>
+                <button class="demo-cmd-btn" data-cmd="diagnose">nsha diagnose</button>
+                <button class="demo-cmd-btn" data-cmd="fix --dry-run">nsha fix --dry-run</button>
+                <button class="demo-cmd-btn" data-cmd="fix --yes">nsha fix --yes</button>
+                <button class="demo-cmd-btn" data-cmd="verify">nsha verify</button>
+                <button class="demo-cmd-btn" data-cmd="help">nsha help</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentation Section -->
+    <section id="docs" class="docs">
+        <div class="container">
+            <h2 class="section-title">Documentation</h2>
+            <div class="docs-grid">
+                <div class="doc-card">
+                    <i class="fas fa-rocket"></i>
+                    <h3>Getting Started</h3>
+                    <p>Quick start guide to get up and running with NSHA in minutes.</p>
+                    <a href="https://github.com/RahulGS02/nsha-tool#quick-start" target="_blank" class="doc-link">Read More →</a>
+                </div>
+                <div class="doc-card">
+                    <i class="fas fa-book"></i>
+                    <h3>Usage Guide</h3>
+                    <p>Complete guide on using all NSHA commands and features.</p>
+                    <a href="https://github.com/RahulGS02/nsha-tool#usage" target="_blank" class="doc-link">Read More →</a>
+                </div>
+                <div class="doc-card">
+                    <i class="fas fa-cogs"></i>
+                    <h3>Technical Specs</h3>
+                    <p>Detailed technical specifications and architecture overview.</p>
+                    <a href="https://github.com/RahulGS02/nsha-tool#technical-specifications" target="_blank" class="doc-link">Read More →</a>
+                </div>
+                <div class="doc-card">
+                    <i class="fas fa-question-circle"></i>
+                    <h3>Troubleshooting</h3>
+                    <p>Common issues and solutions to help you resolve problems.</p>
+                    <a href="https://github.com/RahulGS02/nsha-tool#troubleshooting" target="_blank" class="doc-link">Read More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comments Section (Utterances) -->
+    <section id="comments" class="comments">
+        <div class="container">
+            <h2 class="section-title">Comments & Discussions</h2>
+            <p class="section-subtitle">Share your thoughts, ask questions, or report issues</p>
+            <div class="comments-container">
+                <script src="https://utteranc.es/client.js"
+                        repo="RahulGS02/nsha-tool"
+                        issue-term="pathname"
+                        theme="github-light"
+                        crossorigin="anonymous"
+                        async>
+                </script>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-tools"></i> NSHA</h3>
+                    <p>A powerful CLI tool to fix null SHA issues in Git repositories.</p>
+                    <div class="social-links">
+                        <a href="https://github.com/RahulGS02/nsha-tool" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://twitter.com/RahulGS02" target="_blank"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#download">Download</a></li>
+                        <li><a href="#demo">Demo</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://github.com/RahulGS02/nsha-tool#readme" target="_blank">Documentation</a></li>
+                        <li><a href="https://github.com/RahulGS02/nsha-tool/issues" target="_blank">Report Issues</a></li>
+                        <li><a href="https://github.com/RahulGS02/nsha-tool/releases" target="_blank">Changelog</a></li>
+                        <li><a href="https://github.com/RahulGS02/nsha-tool/blob/master/LICENSE" target="_blank">License</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Download Stats</h4>
+                    <div class="footer-stats">
+                        <p><i class="fas fa-download"></i> <span id="footer-downloads">Loading...</span> downloads</p>
+                        <p><i class="fab fa-github"></i> <span id="footer-stars">Loading...</span> stars</p>
+                        <p><i class="fas fa-code-branch"></i> v1.3.0</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 NSHA Tool. Licensed under MIT License.</p>
+                <p>Created by Rahul</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

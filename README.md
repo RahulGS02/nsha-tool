@@ -2,7 +2,7 @@
 
 [![Go Version](https://img.shields.io/badge/Go-1.21+-00ADD8?style=flat&logo=go)](https://go.dev/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey)](https://github.com/rahul/nsha)
+[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey)](https://github.com/RahulGS02/nsha-tool)
 
 A powerful CLI tool to detect and fix null SHA (`0000000...`) and broken tree object issues in Git repositories.
 
@@ -34,6 +34,14 @@ A powerful CLI tool to detect and fix null SHA (`0000000...`) and broken tree ob
 - **Dry-Run Mode**: Preview changes before applying them
 
 ## Quick Start
+
+### Download Pre-built Binaries
+
+Visit our website: **[https://nsha-tool.netlify.app](https://nsha-tool.netlify.app)**
+
+Or download directly from [GitHub Releases](https://github.com/RahulGS02/nsha-tool/releases/latest)
+
+### Build from Source
 
 ```bash
 # 1. Build the tool
@@ -714,8 +722,8 @@ If you encounter issues not covered here:
 
 ```bash
 # Clone the repository
-git clone https://github.com/rahul/nsha.git
-cd nsha
+git clone https://github.com/RahulGS02/nsha-tool.git
+cd nsha-tool
 
 # Install dependencies
 go mod download
@@ -848,6 +856,51 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Git Filter-Repo](https://github.com/newren/git-filter-repo)
 - [go-git Documentation](https://pkg.go.dev/github.com/go-git/go-git/v5)
 - [Cobra CLI Framework](https://github.com/spf13/cobra)
+
+## Website Deployment (Netlify)
+
+The NSHA website is automatically deployed to Netlify via GitHub Actions.
+
+### Setup Netlify Deployment
+
+1. **Create Netlify Account**
+   - Sign up at https://netlify.com (free)
+   - Connect with GitHub
+
+2. **Create New Site**
+   - Import your NSHA repository
+   - Build settings:
+     - Branch: `main`
+     - Publish directory: `docs`
+   - Deploy site
+
+3. **Get Credentials**
+   - Site ID: Found in Site settings
+   - Auth Token: User settings → Applications → New access token
+
+4. **Add GitHub Secrets**
+   - Go to repository Settings → Secrets → Actions
+   - Add `NETLIFY_AUTH_TOKEN` (your personal access token)
+   - Add `NETLIFY_SITE_ID` (your site ID)
+
+5. **Deploy**
+   ```bash
+   git push origin main
+   # Website auto-deploys to Netlify!
+   ```
+
+### Website Features
+
+- **Live Demo** - Interactive terminal playground
+- **Download Statistics** - Real-time GitHub stats
+- **Comments** - Utterances (GitHub Issues)
+- **OS Detection** - Auto-detects user's platform
+- **Responsive Design** - Mobile, tablet, desktop
+
+### Website URL
+
+- Default: `https://your-site-name.netlify.app`
+- Custom domain: Configure in Netlify dashboard
 
 ## Author
 

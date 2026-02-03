@@ -1,0 +1,46 @@
+# Netlify Configuration for NSHA Website
+
+[build]
+  # Directory to publish (contains index.html)
+  publish = "docs"
+  
+  # Build command (not needed for static site, but can be used for future)
+  command = "echo 'Static site - no build needed'"
+
+# Redirect rules
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Headers for security and performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Custom domain (optional - uncomment and update with your domain)
+# [[redirects]]
+#   from = "https://nsha-tool.com/*"
+#   to = "https://www.nsha-tool.com/:splat"
+#   status = 301
+#   force = true
+
