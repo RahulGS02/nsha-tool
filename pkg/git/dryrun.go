@@ -39,7 +39,8 @@ func (d *DryRunDetails) PrintSummary() {
 
 	fmt.Println("\n╔═══════════════════════════════════════════════════════════╗")
 	fmt.Println("║         DRY RUN - Detailed Changes Preview               ║")
-	fmt.Println("╚═══════════════════════════════════════════════════════════╝\n")
+	fmt.Println("╚═══════════════════════════════════════════════════════════╝")
+	fmt.Println()
 
 	// Group changes by type
 	byType := make(map[string][]DryRunChange)

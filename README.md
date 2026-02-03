@@ -37,7 +37,7 @@ A powerful CLI tool to detect and fix null SHA (`0000000...`) and broken tree ob
 
 ### Download Pre-built Binaries
 
-Visit our website: **[https://nsha-tool.netlify.app](https://nsha-tool.netlify.app)**
+Visit our website: **[https://rahulgs02.github.io/nsha-tool/](https://rahulgs02.github.io/nsha-tool/)**
 
 Or download directly from [GitHub Releases](https://github.com/RahulGS02/nsha-tool/releases/latest)
 
@@ -857,36 +857,31 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [go-git Documentation](https://pkg.go.dev/github.com/go-git/go-git/v5)
 - [Cobra CLI Framework](https://github.com/spf13/cobra)
 
-## Website Deployment (Netlify)
+## Website Deployment (GitHub Pages)
 
-The NSHA website is automatically deployed to Netlify via GitHub Actions.
+The NSHA website is automatically deployed to GitHub Pages via GitHub Actions.
 
-### Setup Netlify Deployment
+### Setup GitHub Pages Deployment
 
-1. **Create Netlify Account**
-   - Sign up at https://netlify.com (free)
-   - Connect with GitHub
+1. **Enable GitHub Pages**
+   - Go to your repository: https://github.com/RahulGS02/nsha-tool
+   - Click "Settings" → "Pages"
+   - Under "Source", select "Deploy from a branch"
+   - Select branch: `gh-pages`
+   - Select folder: `/ (root)`
+   - Click "Save"
 
-2. **Create New Site**
-   - Import your NSHA repository
-   - Build settings:
-     - Branch: `main`
-     - Publish directory: `docs`
-   - Deploy site
-
-3. **Get Credentials**
-   - Site ID: Found in Site settings
-   - Auth Token: User settings → Applications → New access token
-
-4. **Add GitHub Secrets**
-   - Go to repository Settings → Secrets → Actions
-   - Add `NETLIFY_AUTH_TOKEN` (your personal access token)
-   - Add `NETLIFY_SITE_ID` (your site ID)
-
-5. **Deploy**
+2. **Deploy**
    ```bash
-   git push origin main
-   # Website auto-deploys to Netlify!
+   git push origin master
+   # Website auto-deploys to GitHub Pages!
+   ```
+
+3. **Create a Release (Optional)**
+   ```bash
+   git tag v1.3.0
+   git push origin v1.3.0
+   # Builds binaries and deploys website!
    ```
 
 ### Website Features
@@ -899,8 +894,8 @@ The NSHA website is automatically deployed to Netlify via GitHub Actions.
 
 ### Website URL
 
-- Default: `https://your-site-name.netlify.app`
-- Custom domain: Configure in Netlify dashboard
+- **Live Site:** `https://rahulgs02.github.io/nsha-tool/`
+- Custom domain: Configure in GitHub Pages settings (optional)
 
 ## Author
 
