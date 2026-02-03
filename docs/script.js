@@ -31,20 +31,15 @@ function updateDownloadButton() {
         if (os === 'Windows') platform = 'windows-amd64';
         else if (os === 'macOS') platform = 'darwin-amd64';
 
-        downloadBtn.onclick = (e) => {
-            e.preventDefault();
-            trackDownload(platform);
-            const fileName = `nsha-${platform}${os === 'Windows' ? '.exe' : ''}`;
-            const downloadUrl = `https://github.com/RahulGS02/nsha-tool/releases/latest/download/${fileName}`;
+        const fileName = `nsha-${platform}${os === 'Windows' ? '.exe' : ''}`;
+        const downloadUrl = `https://github.com/RahulGS02/nsha-tool/releases/latest/download/${fileName}`;
 
-            // Create temporary anchor element for direct download
-            const link = document.createElement('a');
-            link.href = downloadUrl;
-            link.download = fileName;
-            link.style.display = 'none';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+        // Set the href attribute
+        downloadBtn.href = downloadUrl;
+
+        // Track download on click
+        downloadBtn.onclick = () => {
+            trackDownload(platform);
         };
     }
 }
@@ -134,22 +129,9 @@ function setupInstallationTabs() {
 // Download button tracking
 function setupDownloadTracking() {
     document.querySelectorAll('.btn-download').forEach(button => {
-        button.addEventListener('click', (e) => {
-            e.preventDefault();
+        button.addEventListener('click', () => {
             const platform = button.getAttribute('data-platform');
             trackDownload(platform);
-
-            const fileName = `nsha-${platform}${platform.includes('windows') ? '.exe' : ''}`;
-            const downloadUrl = `https://github.com/RahulGS02/nsha-tool/releases/latest/download/${fileName}`;
-
-            // Create temporary anchor element for direct download
-            const link = document.createElement('a');
-            link.href = downloadUrl;
-            link.download = fileName;
-            link.style.display = 'none';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
         });
     });
 }
