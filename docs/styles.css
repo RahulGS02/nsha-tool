@@ -590,6 +590,294 @@ section {
     color: #94a3b8;
 }
 
+.footer-version {
+    color: #94a3b8;
+    margin-top: 0.5rem;
+}
+
+/* Documentation Sections */
+.docs-section {
+    padding: 4rem 0;
+    background: white;
+}
+
+.docs-section:nth-child(even) {
+    background: var(--light-bg);
+}
+
+.docs-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.docs-content h3 {
+    font-size: 1.75rem;
+    color: var(--text-dark);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.docs-content h4 {
+    font-size: 1.25rem;
+    color: var(--text-dark);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.docs-content p {
+    margin-bottom: 1rem;
+    line-height: 1.8;
+    color: var(--text-light);
+}
+
+.docs-content ul {
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+}
+
+.docs-content ul li {
+    margin-bottom: 0.5rem;
+    color: var(--text-light);
+    line-height: 1.8;
+}
+
+.docs-content code {
+    background: #f1f5f9;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    color: #e11d48;
+}
+
+.lead {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+}
+
+/* Code Blocks */
+.code-block {
+    background: #1e293b;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.code-block pre {
+    margin: 0;
+    font-family: 'Courier New', Consolas, Monaco, monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.code-block code {
+    background: transparent;
+    color: #e2e8f0;
+    padding: 0;
+    font-size: 0.9rem;
+}
+
+.code-block.output {
+    background: #0f172a;
+}
+
+/* Tables */
+.docs-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.docs-table thead {
+    background: var(--primary-color);
+    color: white;
+}
+
+.docs-table th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+}
+
+.docs-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-light);
+}
+
+.docs-table tbody tr:hover {
+    background: var(--light-bg);
+}
+
+.docs-table code {
+    background: #f1f5f9;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+/* Capability Grid */
+.capability-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.capability-item {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.capability-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.capability-item h4 {
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.capability-item h4 i {
+    font-size: 1.5rem;
+}
+
+.capability-item p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* Workflow Steps */
+.workflow-steps {
+    margin: 2rem 0;
+}
+
+.workflow-step {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.step-number {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.step-content {
+    flex: 1;
+}
+
+.step-content h4 {
+    margin-top: 0;
+    color: var(--primary-color);
+    font-size: 1.25rem;
+}
+
+.step-content p {
+    margin-bottom: 0.75rem;
+}
+
+.step-content ul {
+    margin-bottom: 0;
+}
+
+/* Feature List */
+.feature-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.feature-list li {
+    padding-left: 2rem;
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.feature-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--success-color);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.feature-list strong {
+    color: var(--text-dark);
+}
+
+/* Troubleshooting Items */
+.troubleshoot-item {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--warning-color);
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.troubleshoot-item h4 {
+    color: var(--warning-color);
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.troubleshoot-item h4 i {
+    font-size: 1.25rem;
+}
+
+.troubleshoot-item p strong {
+    color: var(--text-dark);
+}
+
+.troubleshoot-item ul {
+    margin-bottom: 1rem;
+}
+
+.troubleshoot-item ol {
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+}
+
+.troubleshoot-item ol li {
+    margin-bottom: 0.5rem;
+    color: var(--text-light);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .hero .container {
@@ -616,6 +904,44 @@ section {
 
     .section-title {
         font-size: 2rem;
+    }
+
+    .capability-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .workflow-step {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .step-number {
+        width: 40px;
+        height: 40px;
+        font-size: 1.25rem;
+    }
+
+    .docs-content h3 {
+        font-size: 1.5rem;
+    }
+
+    .docs-table {
+        font-size: 0.85rem;
+    }
+
+    .docs-table th,
+    .docs-table td {
+        padding: 0.75rem;
+    }
+
+    .code-block {
+        padding: 1rem;
+        font-size: 0.85rem;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
     }
 }
 
