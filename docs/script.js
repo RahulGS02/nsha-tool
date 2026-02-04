@@ -20,11 +20,11 @@ function updateDownloadButton() {
     const os = detectOS();
     const osNameSpan = document.getElementById('os-name');
     const downloadBtn = document.getElementById('download-primary');
-    
+
     if (osNameSpan) {
         osNameSpan.textContent = os;
     }
-    
+
     // Set download link based on OS
     if (downloadBtn) {
         let platform = 'linux-amd64';
@@ -33,13 +33,49 @@ function updateDownloadButton() {
 
         const fileName = `nsha-${platform}${os === 'Windows' ? '.exe' : ''}`;
 
-        // Set the href attribute to local downloads folder
-        downloadBtn.href = `downloads/${fileName}`;
-        downloadBtn.download = fileName;
-
-        // Track download on click
-        downloadBtn.onclick = () => {
+        // Use async click handler for blob download to fix .crdownload issue
+        downloadBtn.onclick = async (e) => {
+            e.preventDefault(); // Prevent default anchor behavior
             trackDownload(platform);
+
+            try {
+                // Show loading state
+                const originalHTML = downloadBtn.innerHTML;
+                downloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Downloading...';
+                downloadBtn.style.pointerEvents = 'none';
+
+                // Fetch file as blob
+                const response = await fetch(`downloads/${fileName}`);
+                if (!response.ok) throw new Error('Download failed');
+
+                const blob = await response.blob();
+
+                // Create download link with correct filename
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = fileName; // This ensures correct filename
+                a.style.display = 'none';
+                document.body.appendChild(a);
+                a.click();
+
+                // Cleanup
+                setTimeout(() => {
+                    window.URL.revokeObjectURL(url);
+                    document.body.removeChild(a);
+                }, 100);
+
+                // Restore button
+                downloadBtn.innerHTML = originalHTML;
+                downloadBtn.style.pointerEvents = 'auto';
+            } catch (error) {
+                console.error('Download error:', error);
+                alert('Download failed. Please try again or use the platform-specific download buttons below.');
+
+                // Restore button
+                downloadBtn.innerHTML = '<i class="fas fa-download"></i> Download for <span id="os-name">' + os + '</span>';
+                downloadBtn.style.pointerEvents = 'auto';
+            }
         };
     }
 }
@@ -126,12 +162,53 @@ function setupInstallationTabs() {
     });
 }
 
-// Download button tracking
+// Download button tracking with blob download to fix .crdownload issue
 function setupDownloadTracking() {
     document.querySelectorAll('.btn-download').forEach(button => {
-        button.addEventListener('click', () => {
+        button.addEventListener('click', async (e) => {
+            e.preventDefault(); // Prevent default anchor behavior
+
             const platform = button.getAttribute('data-platform');
             trackDownload(platform);
+
+            const fileName = `nsha-${platform}${platform.includes('windows') ? '.exe' : ''}`;
+
+            try {
+                // Show loading state
+                const originalHTML = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+                button.style.pointerEvents = 'none';
+
+                // Fetch and download via blob
+                const response = await fetch(`downloads/${fileName}`);
+                if (!response.ok) throw new Error('Download failed');
+
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = fileName; // Ensures correct filename
+                a.style.display = 'none';
+                document.body.appendChild(a);
+                a.click();
+
+                // Cleanup
+                setTimeout(() => {
+                    window.URL.revokeObjectURL(url);
+                    document.body.removeChild(a);
+                }, 100);
+
+                // Restore button
+                button.innerHTML = originalHTML;
+                button.style.pointerEvents = 'auto';
+            } catch (error) {
+                console.error('Download error:', error);
+                alert('Download failed. Please try the direct link or refresh the page.');
+
+                // Restore button
+                button.innerHTML = originalHTML;
+                button.style.pointerEvents = 'auto';
+            }
         });
     });
 }
