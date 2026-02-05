@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NSHA - Null SHA Fixer. A CLI tool to detect and fix null SHA issues in Git repositories.">
+    <title>NSHA - Null SHA Fixer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-tools"></i>
+                <span>NSHA</span>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#overview" class="nav-link">Overview</a></li>
+                <li><a href="#installation" class="nav-link">Installation</a></li>
+                <li><a href="#usage" class="nav-link">Usage</a></li>
+                <li><a href="#download" class="nav-link">Download</a></li>
+                <li><a href="#demo" class="nav-link">Demo</a></li>
+                <li><a href="#architecture" class="nav-link">Architecture</a></li>
+                <li><a href="#troubleshooting" class="nav-link">Troubleshooting</a></li>
+                <li><a href="#try-it-out" class="nav-link">Try It Out</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>NSHA - Null SHA Fixer</h1>
+                <p class="hero-subtitle">A CLI tool to fix null SHA issues in Git repositories</p>
+                <div class="hero-buttons">
+                    <a id="download-primary" href="#download" class="btn btn-primary">
+                        <i class="fas fa-download"></i> Download for <span id="os-name">Your OS</span>
+                    </a>
+                    <a href="#demo" class="btn btn-secondary">
+                        <i class="fas fa-play"></i> Try Demo
+                    </a>
+                </div>
+
+            </div>
+            <div class="hero-terminal">
+                <div class="terminal-header">
+                    <span class="terminal-dot red"></span>
+                    <span class="terminal-dot yellow"></span>
+                    <span class="terminal-dot green"></span>
+                    <span class="terminal-title">Terminal</span>
+                </div>
+                <div class="terminal-body">
+                    <div class="terminal-line">$ nsha diagnose</div>
+                    <div class="terminal-line output">[STEP 1] Diagnosing repository...</div>
+                    <div class="terminal-line output">[WARNING] Found 3 issue(s):</div>
+                    <div class="terminal-line output">  1. [null-sha] refs/tags/null-tag</div>
+                    <div class="terminal-line output">  2. [null-sha] refs/heads/broken-branch</div>
+                    <div class="terminal-line output">  3. [missing-commit] 0000000001</div>
+                    <div class="terminal-line">$ nsha fix --yes</div>
+                    <div class="terminal-line output">[SUCCESS] Fixed 3 issue(s)!</div>
+                    <div class="terminal-line cursor">_</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section (Main Focus) -->
+    <section id="download" class="download">
+        <div class="container">
+            <h2 class="section-title">Download NSHA</h2>
+            <p class="section-subtitle">Choose your platform and start fixing null SHA issues today</p>
+
+            <div class="download-grid">
+                <div class="download-card">
+                    <div class="download-icon">
+                        <i class="fab fa-windows"></i>
+                    </div>
+                    <h3>Windows</h3>
+                    <div class="download-buttons">
+                        <a href="downloads/nsha-windows-amd64.exe" class="btn btn-download" data-platform="windows-amd64" download>
+                            <i class="fas fa-download"></i> AMD64
+                        </a>
+                        <a href="downloads/nsha-windows-arm64.exe" class="btn btn-download" data-platform="windows-arm64" download>
+                            <i class="fas fa-download"></i> ARM64
+                        </a>
+                    </div>
+                    <small class="download-info">Windows 10/11</small>
+                </div>
+
+                <div class="download-card">
+                    <div class="download-icon">
+                        <i class="fab fa-linux"></i>
+                    </div>
+                    <h3>Linux</h3>
+                    <div class="download-buttons">
+                        <a href="downloads/nsha-linux-amd64" class="btn btn-download" data-platform="linux-amd64" download>
+                            <i class="fas fa-download"></i> AMD64
+                        </a>
+                        <a href="downloads/nsha-linux-arm64" class="btn btn-download" data-platform="linux-arm64" download>
+                            <i class="fas fa-download"></i> ARM64
+                        </a>
+                    </div>
+                    <small class="download-info">Ubuntu, Debian, CentOS, Fedora</small>
+                </div>
+
+                <div class="download-card">
+                    <div class="download-icon">
+                        <i class="fab fa-apple"></i>
+                    </div>
+                    <h3>macOS</h3>
+                    <div class="download-buttons">
+                        <a href="downloads/nsha-darwin-amd64" class="btn btn-download" data-platform="darwin-amd64" download>
+                            <i class="fas fa-download"></i> Intel
+                        </a>
+                        <a href="downloads/nsha-darwin-arm64" class="btn btn-download" data-platform="darwin-arm64" download>
+                            <i class="fas fa-download"></i> Apple Silicon
+                        </a>
+                    </div>
+                    <small class="download-info">macOS 10.15+</small>
+                </div>
+            </div>
+
+            <div class="installation-guide">
+                <h3>Quick Installation</h3>
+                <div class="install-tabs">
+                    <button class="tab-btn active" data-tab="windows">Windows</button>
+                    <button class="tab-btn" data-tab="linux">Linux</button>
+                    <button class="tab-btn" data-tab="macos">macOS</button>
+                </div>
+                <div class="tab-content active" id="windows-tab">
+                    <pre><code># Download the executable
+# Move to a directory in your PATH
+# Or run directly: .\nsha.exe --help</code></pre>
+                </div>
+                <div class="tab-content" id="linux-tab">
+                    <pre><code># Download the binary
+chmod +x nsha-linux-amd64
+sudo mv nsha-linux-amd64 /usr/local/bin/nsha
+nsha --help</code></pre>
+                </div>
+                <div class="tab-content" id="macos-tab">
+                    <pre><code># Download the binary
+chmod +x nsha-darwin-amd64
+sudo mv nsha-darwin-amd64 /usr/local/bin/nsha
+nsha --help</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section id="overview" class="docs-section">
+        <div class="container">
+            <h2 class="section-title">Overview</h2>
+            <div class="docs-content">
+                <p class="lead">NSHA (Null SHA Fixer) is a command-line tool to detect and fix null SHA (<code>0000000...</code>) and broken tree object issues in Git repositories.</p>
+
+                <h3>What is a Null SHA Issue?</h3>
+                <p>A null SHA issue occurs when Git references (branches, tags, or commits) point to invalid or non-existent objects, typically represented as <code>0000000000000000000000000000000000000000</code>. These issues can cause:</p>
+                <ul>
+                    <li>Repository corruption and data loss</li>
+                    <li>Failed git operations (push, pull, clone)</li>
+                    <li>Broken commit history</li>
+                    <li>Missing branches or tags</li>
+                    <li>Inability to access certain parts of the repository</li>
+                </ul>
+
+                <h3>Key Capabilities</h3>
+                <div class="capability-grid">
+                    <div class="capability-item">
+                        <h4><i class="fas fa-search"></i> Diagnose</h4>
+                        <p>Comprehensive repository scanning to detect null SHA references, missing commits, broken parents, and corrupted tree objects.</p>
+                    </div>
+                    <div class="capability-item">
+                        <h4><i class="fas fa-wrench"></i> Fix</h4>
+                        <p>Automated repair with history rewriting when needed. Includes dry-run mode to preview changes before applying.</p>
+                    </div>
+                    <div class="capability-item">
+                        <h4><i class="fas fa-check-circle"></i> Verify</h4>
+                        <p>Post-fix verification to ensure repository integrity and confirm all issues have been resolved.</p>
+                    </div>
+                    <div class="capability-item">
+                        <h4><i class="fas fa-save"></i> Backup</h4>
+                        <p>Automatic repository backup before any modifications, with integrity verification and rollback capability.</p>
+                    </div>
+                </div>
+
+                <h3>Core Features</h3>
+                <ul class="feature-list">
+                    <li><strong>Fast Performance:</strong> Optimized for maximum speed and efficiency</li>
+                    <li><strong>Cross-Platform:</strong> Native support for Windows, Linux, and macOS (Intel and ARM)</li>
+                    <li><strong>Safe Operations:</strong> Automatic backups and dry-run mode prevent data loss</li>
+                    <li><strong>Comprehensive Logging:</strong> Detailed logs and reports saved to user's home directory</li>
+                    <li><strong>Beautiful CLI:</strong> Colored output with progress indicators for better user experience</li>
+                    <li><strong>Multiple Issue Types:</strong> Detects and fixes null SHA, missing commits, broken parents, and corrupted trees</li>
+                    <li><strong>History Rewriting:</strong> Rewrites repository history to fix corrupted commits and trees</li>
+                    <li><strong>Garbage Collection:</strong> Automatic cleanup of orphaned objects after fixes</li>
+                </ul>
+
+                <h3>When to Use NSHA</h3>
+                <p>NSHA is designed for situations where your Git repository has become corrupted or contains invalid references. Common scenarios include:</p>
+                <ul>
+                    <li>After a failed git operation or interrupted process</li>
+                    <li>When <code>git fsck</code> reports errors</li>
+                    <li>After recovering from disk corruption or system crashes</li>
+                    <li>When branches or tags point to non-existent commits</li>
+                    <li>After manual repository manipulation or migration</li>
+                    <li>When encountering "bad object" or "missing object" errors</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Installation Section -->
+    <section id="installation" class="docs-section">
+        <div class="container">
+            <h2 class="section-title">Installation</h2>
+            <div class="docs-content">
+                <p class="lead">Download NSHA from the <a href="#download">Download section</a> above and start using it immediately. No installation or setup required!</p>
+
+                <h3>How to Use After Download</h3>
+
+                <h4>Windows</h4>
+                <div class="code-block">
+                    <pre><code># Download nsha-windows-amd64.exe or nsha-windows-arm64.exe
+# Open PowerShell or Command Prompt
+# Navigate to the download folder
+cd Downloads
+
+# Run NSHA directly
+.\nsha-windows-amd64.exe --help
+.\nsha-windows-amd64.exe diagnose
+
+# Optional: Rename for easier use
+ren nsha-windows-amd64.exe nsha.exe
+.\nsha.exe --help</code></pre>
+                </div>
+
+                <h4>Linux</h4>
+                <div class="code-block">
+                    <pre><code># Download nsha-linux-amd64 or nsha-linux-arm64
+# Open terminal
+# Navigate to the download folder
+cd ~/Downloads
+
+# Make it executable
+chmod +x nsha-linux-amd64
+
+# Run NSHA directly
+./nsha-linux-amd64 --help
+./nsha-linux-amd64 diagnose
+
+# Optional: Move to system PATH for easier access
+sudo mv nsha-linux-amd64 /usr/local/bin/nsha
+nsha --help</code></pre>
+                </div>
+
+                <h4>macOS</h4>
+                <div class="code-block">
+                    <pre><code># Download nsha-darwin-amd64 (Intel) or nsha-darwin-arm64 (Apple Silicon)
+# Open terminal
+# Navigate to the download folder
+cd ~/Downloads
+
+# Make it executable
+chmod +x nsha-darwin-amd64
+
+# Run NSHA directly
+./nsha-darwin-amd64 --help
+./nsha-darwin-amd64 diagnose
+
+# Optional: Move to system PATH for easier access
+sudo mv nsha-darwin-amd64 /usr/local/bin/nsha
+nsha --help</code></pre>
+                </div>
+
+                <h3>Verify It's Working</h3>
+                <p>Test NSHA with these simple commands:</p>
+                <div class="code-block">
+                    <pre><code># Check version
+nsha --version
+
+# Display help
+nsha --help
+
+# List available commands
+nsha</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Usage Section -->
+    <section id="usage" class="docs-section">
+        <div class="container">
+            <h2 class="section-title">Usage</h2>
+            <div class="docs-content">
+                <h3>Basic Commands</h3>
+                <p>NSHA provides three main commands for managing repository issues:</p>
+
+                <h4>1. Diagnose Issues</h4>
+                <p>Check if your repository has any null SHA or broken tree issues:</p>
+                <div class="code-block">
+                    <pre><code># Diagnose current directory
+nsha diagnose
+
+# Diagnose specific repository
+nsha diagnose --repo /path/to/repo
+
+# Verbose output
+nsha diagnose --verbose</code></pre>
+                </div>
+
+                <p><strong>Example Output:</strong></p>
+                <div class="code-block output">
+                    <pre><code>[STEP 1] Diagnosing repository...
+[WARNING] Found 3 issue(s):
+  1. [null-sha] refs/tags/null-tag: Reference has null SHA
+  2. [null-sha] refs/heads/broken-branch: Reference has null SHA
+  3. [missing-commit] 0000000000000000000000000000000000000001: Cannot read commit</code></pre>
+                </div>
+
+                <h4>2. Fix Issues</h4>
+                <p>Automatically fix all detected issues:</p>
+                <div class="code-block">
+                    <pre><code># Dry-run (preview changes without applying)
+nsha fix --dry-run
+
+# Fix with confirmation prompt
+nsha fix
+
+# Fix without confirmation
+nsha fix --yes
+
+# Fix with verbose output
+nsha fix --verbose
+
+# Fix specific repository
+nsha fix --repo /path/to/repo</code></pre>
+                </div>
+
+                <p><strong>Example Output:</strong></p>
+                <div class="code-block output">
+                    <pre><code>[STEP 1] Diagnosing repository...
+[INFO] Logging to: C:\Users\username\nsha\20240203-105946
+
+[STEP 2] Creating repository backup...
+[SUCCESS] Backup created successfully
+[SUCCESS] Directory copy backup verified successfully
+
+[STEP 3] Fixing null SHA issues...
+[SUCCESS] Fixed 2 issue(s)!</code></pre>
+                </div>
+
+                <h4>3. Verify Repository</h4>
+                <p>Verify that all issues have been resolved:</p>
+                <div class="code-block">
+                    <pre><code># Verify current directory
+nsha verify
+
+# Verify specific repository
+nsha verify --repo /path/to/repo
+
+# Verbose output
+nsha verify --verbose</code></pre>
+                </div>
+
+                <p><strong>Example Output:</strong></p>
+                <div class="code-block output">
+                    <pre><code>[STEP 1] Verifying repository integrity...
+[SUCCESS] Repository is healthy! No issues found.</code></pre>
+                </div>
+
+                <h3>Command Flags</h3>
+                <p>All commands support the following flags:</p>
+                <table class="docs-table">
+                    <thead>
+                        <tr>
+                            <th>Flag</th>
+                            <th>Description</th>
+                            <th>Default</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>-r, --repo &lt;path&gt;</code></td>
+                            <td>Path to Git repository</td>
+                            <td>Current directory</td>
+                        </tr>
+                        <tr>
+                            <td><code>-v, --verbose</code></td>
+                            <td>Enable verbose output with detailed information</td>
+                            <td>false</td>
+                        </tr>
+                        <tr>
+                            <td><code>-h, --help</code></td>
+                            <td>Show help for the command</td>
+                            <td>-</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p><strong>Fix command additional flags:</strong></p>
+                <table class="docs-table">
+                    <thead>
+                        <tr>
+                            <th>Flag</th>
+                            <th>Description</th>
+                            <th>Default</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>--dry-run</code></td>
+                            <td>Preview changes without applying them</td>
+                            <td>false</td>
+                        </tr>
+                        <tr>
+                            <td><code>-y, --yes</code></td>
+                            <td>Skip confirmation prompt</td>
+                            <td>false</td>
+                        </tr>
+                        <tr>
+                            <td><code>-f, --force</code></td>
+                            <td>Force operation even with warnings</td>
+                            <td>false</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Complete Workflow Example</h3>
+                <p>Here's a complete workflow for diagnosing and fixing repository issues:</p>
+                <div class="code-block">
+                    <pre><code># Step 1: Navigate to your repository
+cd /path/to/your/repository
+
+# Step 2: Check for issues
+nsha diagnose --verbose
+
+# Step 3: Preview fixes (dry-run)
+nsha fix --dry-run --verbose
+
+# Step 4: Apply fixes
+nsha fix --yes --verbose
+
+# Step 5: Verify the fix
+nsha verify
+
+# Step 6: Push to remote (if needed)
+git push origin --force --all
+git push origin --force --tags</code></pre>
+                </div>
+
+                <h3>Logging and Reporting</h3>
+                <p>NSHA automatically creates detailed logs and reports when fixing issues:</p>
+
+                <p><strong>Location:</strong> <code>~/nsha/YYYYMMDD-HHMMSS/</code> (user's home directory)</p>
+
+                <p><strong>Files created:</strong></p>
+                <ul>
+                    <li><code>nsha.log</code> - Detailed operation log</li>
+                    <li><code>report.txt</code> - Summary of issues found and fixed</li>
+                    <li><code>changes-summary.txt</code> - List of all changes made</li>
+                    <li><code>backup/repository/</code> - Complete backup of the repository</li>
+                </ul>
+
+                <p><strong>Example directory structure:</strong></p>
+                <div class="code-block">
+                    <pre><code>C:\Users\username\nsha\20240203-105946\
+├── nsha.log
+├── report.txt
+├── changes-summary.txt
+└── backup\
+    └── repository\
+        └── .git\</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Demo Section -->
+    <section id="demo" class="demo">
+        <div class="container">
+            <h2 class="section-title">Live Demo</h2>
+            <p class="section-subtitle">Try NSHA commands in an interactive playground</p>
+
+            <div class="demo-terminal">
+                <div class="terminal-header">
+                    <span class="terminal-dot red"></span>
+                    <span class="terminal-dot yellow"></span>
+                    <span class="terminal-dot green"></span>
+                    <span class="terminal-title">Interactive Demo</span>
+                </div>
+                <div class="terminal-body" id="demo-terminal-body">
+                    <div class="terminal-line">Welcome to NSHA Interactive Demo!</div>
+                    <div class="terminal-line">Try these commands: diagnose, fix, verify, help</div>
+                    <div class="terminal-line">&nbsp;</div>
+                    <div class="terminal-input-line">
+                        <span class="prompt">$ nsha </span>
+                        <input type="text" id="demo-input" class="terminal-input" placeholder="Type a command..." autocomplete="off">
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-commands">
+                <h3>Quick Commands</h3>
+                <button class="demo-cmd-btn" data-cmd="diagnose">nsha diagnose</button>
+                <button class="demo-cmd-btn" data-cmd="fix --dry-run">nsha fix --dry-run</button>
+                <button class="demo-cmd-btn" data-cmd="fix --yes">nsha fix --yes</button>
+                <button class="demo-cmd-btn" data-cmd="verify">nsha verify</button>
+                <button class="demo-cmd-btn" data-cmd="help">nsha help</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section id="architecture" class="docs-section">
+        <div class="container">
+            <h2 class="section-title">Architecture & Technical Specifications</h2>
+            <div class="docs-content">
+                <h3>How NSHA Works</h3>
+                <p>NSHA follows a systematic, multi-step approach to detect and fix null SHA issues in Git repositories:</p>
+
+                <div class="workflow-steps">
+                    <div class="workflow-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Diagnosis</h4>
+                            <p>Runs a comprehensive repository scan (similar to <code>git fsck</code>) to identify:</p>
+                            <ul>
+                                <li>Null SHA references in branches, tags, and packed-refs</li>
+                                <li>Missing commits and broken parent references</li>
+                                <li>Corrupted tree objects</li>
+                                <li>Dangling references</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="workflow-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Backup Creation</h4>
+                            <p>Creates a complete backup of the repository before any modifications:</p>
+                            <ul>
+                                <li>Attempts git bundle first (preserves full history)</li>
+                                <li>Falls back to directory copy if bundle fails</li>
+                                <li>Verifies backup integrity</li>
+                                <li>Stores backup in user's home directory with timestamp</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="workflow-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Cleanup Packed-Refs</h4>
+                            <p>Scans and cleans the packed-refs file:</p>
+                            <ul>
+                                <li>Removes null SHA entries (0000000..., 0000000...1, etc.)</li>
+                                <li>Cleans up duplicate references</li>
+                                <li>Ensures clean state before fixes</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="workflow-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Fix Null SHA Issues</h4>
+                            <p>Applies fixes using git plumbing commands:</p>
+                            <ul>
+                                <li>Points null SHA references to valid commits</li>
+                                <li>Updates or removes tags with null SHA</li>
+                                <li>Fixes references to non-existent commits</li>
+                                <li>Detects and reports corrupted trees</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="workflow-step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h4>History Rewriting</h4>
+                            <p>Rewrites corrupted repository history:</p>
+                            <ul>
+                                <li>Walks the entire commit graph</li>
+                                <li>Rewrites commits with corrected parents and trees</li>
+                                <li>Updates all branches and tags</li>
+                                <li>Preserves commit metadata (author, date, message)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="workflow-step">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <h4>Garbage Collection</h4>
+                            <p>Cleans up the repository:</p>
+                            <ul>
+                                <li>Runs <code>git gc --prune=now --aggressive</code></li>
+                                <li>Runs <code>git prune --expire=now</code></li>
+                                <li>Removes orphaned objects</li>
+                                <li>Compacts repository</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="workflow-step">
+                        <div class="step-number">7</div>
+                        <div class="step-content">
+                            <h4>Verification</h4>
+                            <p>Final integrity check:</p>
+                            <ul>
+                                <li>Runs <code>git fsck</code> to verify repository health</li>
+                                <li>Confirms all issues are resolved</li>
+                                <li>Reports any remaining issues</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Issue Detection Types</h3>
+                <p>NSHA can detect and fix the following types of repository issues with detailed real-time logging:</p>
+
+                <div class="troubleshoot-item">
+                    <h4><i class="fas fa-exclamation-circle"></i> 1. Null SHA References</h4>
+                    <p><strong>Description:</strong> References (branches, tags, or packed-refs) pointing to the null SHA <code>0000000000000000000000000000000000000000</code> or similar invalid patterns.</p>
+
+                    <p><strong>Real-time Log Example:</strong></p>
+                    <div class="code-block output">
+                        <pre><code>[STEP 1] Diagnosing repository...
+[WARNING] Found 2 issue(s):
+  1. [null-sha] refs/tags/v1.0.0: Reference has null SHA
+     SHA: 0000000000000000000000000000000000000000
+  2. [null-sha] refs/heads/feature-branch: Reference has null SHA
+     SHA: 0000000000000000000000000000000000000001
+
+[STEP 3] Fixing null SHA issues...
+[INFO] Fixing reference: refs/tags/v1.0.0
+[INFO] Pointing to latest commit: a1b2c3d4e5f6...
+[SUCCESS] Fixed refs/tags/v1.0.0</code></pre>
+                    </div>
+
+                    <p><strong>Fix Strategy:</strong> Point reference to a valid commit (usually HEAD or latest commit on the branch) or remove the reference if no valid target exists.</p>
+                </div>
+
+                <div class="troubleshoot-item">
+                    <h4><i class="fas fa-exclamation-circle"></i> 2. Missing Commits</h4>
+                    <p><strong>Description:</strong> References pointing to commit objects that don't exist in the repository's object database.</p>
+
+                    <p><strong>Real-time Log Example:</strong></p>
+                    <div class="code-block output">
+                        <pre><code>[STEP 1] Diagnosing repository...
+[WARNING] Found 1 issue(s):
+  1. [missing-commit] refs/heads/old-branch: Cannot read commit
+     SHA: abc123def456789012345678901234567890abcd
+     Error: object not found
+
+[STEP 3] Fixing null SHA issues...
+[INFO] Fixing reference: refs/heads/old-branch
+[INFO] Commit abc123d... not found
+[INFO] Updating to parent commit: def456e...
+[SUCCESS] Fixed refs/heads/old-branch</code></pre>
+                    </div>
+
+                    <p><strong>Fix Strategy:</strong> Update reference to point to the parent commit, or to HEAD if parent is also missing. If no valid commit exists, the reference is removed.</p>
+                </div>
+
+                <div class="troubleshoot-item">
+                    <h4><i class="fas fa-exclamation-circle"></i> 3. Broken Parents</h4>
+                    <p><strong>Description:</strong> Commits that reference parent commits with null SHA or non-existent parent objects, breaking the commit history chain.</p>
+
+                    <p><strong>Real-time Log Example:</strong></p>
+                    <div class="code-block output">
+                        <pre><code>[STEP 1] Diagnosing repository...
+[WARNING] Found 1 issue(s):
+  1. [broken-parent] commit 789abc123def456: Has null SHA parent
+     Commit: 789abc123def456789012345678901234567890
+     Parent: 0000000000000000000000000000000000000000
+
+[STEP 5] Rewriting history...
+[INFO] Processing commit: 789abc1...
+[INFO] Removing null SHA parent reference
+[INFO] Creating new commit with fixed parents
+[SUCCESS] Rewrote commit 789abc1... → 456def7...</code></pre>
+                    </div>
+
+                    <p><strong>Fix Strategy:</strong> Rewrite the commit history, removing null SHA parents or replacing them with valid parent commits. This preserves the commit message, author, and date.</p>
+                </div>
+
+                <div class="troubleshoot-item">
+                    <h4><i class="fas fa-exclamation-circle"></i> 4. Missing Trees</h4>
+                    <p><strong>Description:</strong> Commits that reference tree objects (directory structures) that don't exist in the repository.</p>
+
+                    <p><strong>Real-time Log Example:</strong></p>
+                    <div class="code-block output">
+                        <pre><code>[STEP 1] Diagnosing repository...
+[WARNING] Found 1 issue(s):
+  1. [missing-tree] commit 456def789abc123: Cannot read tree
+     Commit: 456def789abc123456789012345678901234567
+     Tree: 111222333444555666777888999000aaabbbccc
+     Error: tree object not found
+
+[STEP 5] Rewriting history...
+[INFO] Processing commit: 456def7...
+[INFO] Tree 111222... not found
+[INFO] Creating empty tree as replacement
+[INFO] New tree SHA: dddeeefff000111222333444555666777888
+[SUCCESS] Rewrote commit with new tree</code></pre>
+                    </div>
+
+                    <p><strong>Fix Strategy:</strong> Create a replacement tree (usually empty or copied from parent commit) and rewrite the commit to reference the new tree.</p>
+                </div>
+
+                <div class="troubleshoot-item">
+                    <h4><i class="fas fa-exclamation-circle"></i> 5. Corrupted Trees</h4>
+                    <p><strong>Description:</strong> Tree objects that contain entries with null SHA or invalid object references, causing directory structure corruption.</p>
+
+                    <p><strong>Real-time Log Example:</strong></p>
+                    <div class="code-block output">
+                        <pre><code>[STEP 1] Diagnosing repository...
+[WARNING] Found 1 issue(s):
+  1. [corrupted-tree] tree 999888777666555: Contains null SHA entry
+     Tree: 999888777666555444333222111000fffeeedd
+     Entry: src/main.go → 0000000000000000000000000000000000000000
+
+[STEP 5] Rewriting history...
+[INFO] Processing tree: 9998887...
+[INFO] Found corrupted entry: src/main.go
+[INFO] Removing null SHA entry from tree
+[INFO] Rebuilding tree without corrupted entries
+[INFO] New tree SHA: aaabbbccc111222333444555666777888999
+[SUCCESS] Rebuilt tree 9998887... → aaabbbc...</code></pre>
+                    </div>
+
+                    <p><strong>Fix Strategy:</strong> Rebuild the tree object, removing entries with null SHA or replacing them with valid objects from previous commits.</p>
+                </div>
+
+                <h3>Platform Support</h3>
+                <p>NSHA is built for cross-platform compatibility with native binaries for all major operating systems:</p>
+                <table class="docs-table">
+                    <thead>
+                        <tr>
+                            <th>Platform</th>
+                            <th>Architecture</th>
+                            <th>Tested Versions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Windows</td>
+                            <td>AMD64, ARM64</td>
+                            <td>Windows 10, Windows 11</td>
+                        </tr>
+                        <tr>
+                            <td>Linux</td>
+                            <td>AMD64, ARM64</td>
+                            <td>Ubuntu, Debian, CentOS, Fedora</td>
+                        </tr>
+                        <tr>
+                            <td>macOS</td>
+                            <td>AMD64 (Intel), ARM64 (Apple Silicon)</td>
+                            <td>macOS 10.15+</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Troubleshooting Section -->
+    <section id="troubleshooting" class="docs-section">
+        <div class="container">
+            <h2 class="section-title">Troubleshooting</h2>
+            <div class="docs-content">
+                <h3>Common Issues and Solutions</h3>
+
+                <div class="troubleshoot-item">
+                    <h4><i class="fas fa-exclamation-triangle"></i> "Repository not found" Error</h4>
+                    <p><strong>Problem:</strong> NSHA cannot find the Git repository.</p>
+                    <p><strong>Solution:</strong></p>
+                    <div class="code-block">
+                        <pre><code># Make sure you're in a Git repository
+cd /path/to/your/repository
+
+# Or specify the repository path explicitly
+nsha diagnose --repo /path/to/repository</code></pre>
+                    </div>
+                </div>
+
+                <div class="troubleshoot-item">
+                    <h4><i class="fas fa-exclamation-triangle"></i> "Permission Denied" Error</h4>
+                    <p><strong>Problem:</strong> NSHA doesn't have permission to access the repository or create backups.</p>
+                    <p><strong>Solution:</strong></p>
+                    <ul>
+                        <li><strong>Windows:</strong> Run PowerShell as Administrator</li>
+                        <li><strong>Linux/macOS:</strong> Use <code>sudo</code> or change repository permissions</li>
+                    </ul>
+                    <div class="code-block">
+                        <pre><code># Linux/macOS: Run with sudo
+sudo nsha fix --yes
+
+# Or change permissions
+chmod -R u+w /path/to/repository</code></pre>
+                    </div>
+                </div>
+
+                <div class="troubleshoot-item">
+                    <h4><i class="fas fa-exclamation-triangle"></i> "Backup Failed" Error</h4>
+                    <p><strong>Problem:</strong> NSHA cannot create a backup of the repository.</p>
+                    <p><strong>Solution:</strong></p>
+                    <ul>
+                        <li>Check available disk space in your home directory</li>
+                        <li>Ensure you have write permissions to <code>~/nsha/</code></li>
+                        <li>Try manually creating the directory: <code>mkdir -p ~/nsha</code></li>
+                    </ul>
+                </div>
+
+                <div class="troubleshoot-item">
+                    <h4><i class="fas fa-exclamation-triangle"></i> "Fix Failed" - Issues Still Remain</h4>
+                    <p><strong>Problem:</strong> After running fix, some issues still exist.</p>
+                    <p><strong>Solution:</strong></p>
+                    <div class="code-block">
+                        <pre><code># Run fix multiple times if needed
+nsha fix --yes --verbose
+
+# Check the logs for details
+cat ~/nsha/YYYYMMDD-HHMMSS/nsha.log
+
+# Verify the repository
+nsha verify --verbose</code></pre>
+                    </div>
+                </div>
+
+                <div class="troubleshoot-item">
+                    <h4><i class="fas fa-exclamation-triangle"></i> "Cannot Push to Remote" After Fix</h4>
+                    <p><strong>Problem:</strong> Git refuses to push after NSHA rewrites history.</p>
+                    <p><strong>Solution:</strong></p>
+                    <p>History rewriting changes commit SHAs, requiring force push:</p>
+                    <div class="code-block">
+                        <pre><code># Force push all branches
+git push origin --force --all
+
+# Force push all tags
+git push origin --force --tags
+
+# Warning: Coordinate with team members before force pushing!</code></pre>
+                    </div>
+                </div>
+
+                <div class="troubleshoot-item">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Windows SmartScreen Warning</h4>
+                    <p><strong>Problem:</strong> Windows shows "unsafe" warning when downloading .exe files.</p>
+                    <p><strong>Solution:</strong></p>
+                    <p>This is normal for unsigned executables. To proceed:</p>
+                    <ol>
+                        <li>Click "More info" or "Keep anyway"</li>
+                        <li>Right-click the file → Properties → Check "Unblock" → OK</li>
+                        <li>Run the file</li>
+                    </ol>
+                    <p>The warning will disappear as more users download the tool.</p>
+                </div>
+
+                <h3>Getting Help</h3>
+                <p>If you encounter issues not covered here:</p>
+                <ul>
+                    <li><strong>Check the logs:</strong> Located in <code>~/nsha/YYYYMMDD-HHMMSS/nsha.log</code></li>
+                    <li><strong>Run with verbose mode:</strong> Add <code>--verbose</code> flag to any command</li>
+                    <li><strong>Use the comments section:</strong> Scroll down to ask questions</li>
+                </ul>
+
+                <h3>Best Practices</h3>
+                <ul class="feature-list">
+                    <li><strong>Always use dry-run first:</strong> Preview changes with <code>nsha fix --dry-run</code></li>
+                    <li><strong>Keep backups:</strong> NSHA creates automatic backups, but keep your own as well</li>
+                    <li><strong>Coordinate with team:</strong> Inform team members before force pushing</li>
+                    <li><strong>Test locally first:</strong> Fix issues on a local clone before pushing</li>
+                    <li><strong>Review logs:</strong> Check logs after fixes to understand what changed</li>
+                    <li><strong>Verify after fix:</strong> Always run <code>nsha verify</code> after fixing</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Try It Out Section -->
+    <section id="try-it-out" class="docs-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Try It Out</h2>
+            <div class="docs-content" style="background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                <h3><i class="fas fa-flask"></i> Sample Repository with Null SHA Issues</h3>
+                <p class="lead">Want to see NSHA in action? Download our sample repository that contains real null SHA issues and test the tool yourself!</p>
+
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0; border-left: 4px solid #667eea;">
+                    <h4 style="margin-top: 0; color: #667eea;"><i class="fas fa-info-circle"></i> What's Inside</h4>
+                    <p>This sample repository (<code>nullsha-repo.zip</code>) contains a Git repository with intentionally corrupted references:</p>
+                    <ul style="margin-bottom: 0;">
+                        <li><strong>Null SHA references:</strong> Branches and tags pointing to <code>0000000000000000000000000000000000000000</code></li>
+                        <li><strong>Missing commits:</strong> References pointing to non-existent commit objects</li>
+                        <li><strong>Broken parents:</strong> Commits with invalid parent references</li>
+                        <li><strong>Corrupted trees:</strong> Tree objects with null SHA entries</li>
+                    </ul>
+                </div>
+
+                <h4><i class="fas fa-rocket"></i> How to Use</h4>
+                <div class="code-block">
+                    <pre><code># 1. Download and extract the sample repository
+# (Click the button below to download nullsha-repo.zip)
+
+# 2. Extract the zip file
+unzip nullsha-repo.zip
+cd nullsha-repo
+
+# 3. Diagnose the issues
+nsha diagnose
+
+# 4. Preview the fix (dry-run)
+nsha fix --dry-run
+
+# 5. Apply the fix
+nsha fix
+
+# 6. Verify the repository is fixed
+nsha verify</code></pre>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="nullsha-repo.zip" download="nullsha-repo.zip" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;">
+                        <i class="fas fa-download"></i> Download Sample Repository
+                    </a>
+                    <p style="margin-top: 1rem; color: #666; font-size: 0.9rem;">
+                        <i class="fas fa-file-archive"></i> nullsha-repo.zip (~50 KB)
+                    </p>
+                </div>
+
+                <div style="background: #fff3cd; padding: 1rem; border-radius: 8px; margin-top: 2rem; border-left: 4px solid #ffc107;">
+                    <p style="margin: 0;"><strong><i class="fas fa-exclamation-triangle"></i> Note:</strong> This is a sample repository for testing purposes only. It contains intentional corruption to demonstrate NSHA's capabilities. Do not use it for production work.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comments Section (Utterances) -->
+    <section id="comments" class="comments">
+        <div class="container">
+            <h2 class="section-title">Comments & Discussions</h2>
+            <p class="section-subtitle">Share your thoughts, ask questions, or report issues</p>
+            <div class="comments-container">
+                <script src="https://utteranc.es/client.js"
+                        repo="RahulGS02/nsha-tool"
+                        issue-term="pathname"
+                        theme="github-light"
+                        crossorigin="anonymous"
+                        async>
+                </script>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-tools"></i> NSHA</h3>
+                    <p>A CLI tool to fix null SHA issues in Git repositories.</p>
+                    <p class="footer-version">v1.3.0</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Documentation</h4>
+                    <ul>
+                        <li><a href="#overview">Overview</a></li>
+                        <li><a href="#installation">Installation</a></li>
+                        <li><a href="#usage">Usage</a></li>
+                        <li><a href="#architecture">Architecture</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#download">Download</a></li>
+                        <li><a href="#demo">Demo</a></li>
+                        <li><a href="#try-it-out">Try It Out</a></li>
+                        <li><a href="#troubleshooting">Troubleshooting</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="#comments">Comments & Discussions</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 NSHA Tool. Licensed under MIT License.</p>
+                <p>Author: Rahul G S</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
