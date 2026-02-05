@@ -43,23 +43,7 @@
                         <i class="fas fa-play"></i> Try Demo
                     </a>
                 </div>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <i class="fas fa-code-branch"></i>
-                        <span>v1.3.0</span>
-                        <small>Latest Version</small>
-                    </div>
-                    <div class="stat">
-                        <i class="fas fa-desktop"></i>
-                        <span>Cross-Platform</span>
-                        <small>Windows, Linux, macOS</small>
-                    </div>
-                    <div class="stat">
-                        <i class="fas fa-shield-alt"></i>
-                        <span>MIT License</span>
-                        <small>Open Source</small>
-                    </div>
-                </div>
+
             </div>
             <div class="hero-terminal">
                 <div class="terminal-header">
@@ -235,59 +219,66 @@ nsha --help</code></pre>
         <div class="container">
             <h2 class="section-title">Installation</h2>
             <div class="docs-content">
-                <h3>Prerequisites</h3>
-                <ul>
-                    <li><strong>Git:</strong> Version 2.0 or higher - <a href="https://git-scm.com/downloads" target="_blank">Download from git-scm.com</a></li>
-                    <li><strong>Go (for building from source):</strong> Version 1.21 or higher - <a href="https://go.dev/dl/" target="_blank">Download from go.dev</a></li>
-                </ul>
+                <p class="lead">Download NSHA from the <a href="#download">Download section</a> above and start using it immediately. No installation or setup required!</p>
 
-                <h3>Option 1: Download Pre-built Binaries (Recommended)</h3>
-                <p>The easiest way to get started is to download pre-built binaries for your platform. See the <a href="#download">Download section</a> below for platform-specific binaries.</p>
+                <h3>How to Use After Download</h3>
 
-                <h3>Option 2: Build from Source</h3>
-
-                <h4>Windows (PowerShell)</h4>
+                <h4>Windows</h4>
                 <div class="code-block">
-                    <pre><code># Clone the repository
-git clone https://github.com/RahulGS02/nsha-tool.git
-cd nsha-tool
+                    <pre><code># Download nsha-windows-amd64.exe or nsha-windows-arm64.exe
+# Open PowerShell or Command Prompt
+# Navigate to the download folder
+cd Downloads
 
-# Download dependencies
-go mod download
+# Run NSHA directly
+.\nsha-windows-amd64.exe --help
+.\nsha-windows-amd64.exe diagnose
 
-# Build the executable
-go build -o nsha.exe
-
-# Test the installation
-.\nsha.exe --version
+# Optional: Rename for easier use
+ren nsha-windows-amd64.exe nsha.exe
 .\nsha.exe --help</code></pre>
                 </div>
 
-                <h4>Linux / macOS</h4>
+                <h4>Linux</h4>
                 <div class="code-block">
-                    <pre><code># Clone the repository
-git clone https://github.com/RahulGS02/nsha-tool.git
-cd nsha-tool
-
-# Download dependencies
-go mod download
-
-# Build the executable
-go build -o nsha
+                    <pre><code># Download nsha-linux-amd64 or nsha-linux-arm64
+# Open terminal
+# Navigate to the download folder
+cd ~/Downloads
 
 # Make it executable
-chmod +x nsha
+chmod +x nsha-linux-amd64
 
-# Test the installation
-./nsha --version
-./nsha --help
+# Run NSHA directly
+./nsha-linux-amd64 --help
+./nsha-linux-amd64 diagnose
 
-# Optional: Install to system PATH
-sudo cp nsha /usr/local/bin/</code></pre>
+# Optional: Move to system PATH for easier access
+sudo mv nsha-linux-amd64 /usr/local/bin/nsha
+nsha --help</code></pre>
                 </div>
 
-                <h3>Verifying Installation</h3>
-                <p>After installation, verify that NSHA is working correctly:</p>
+                <h4>macOS</h4>
+                <div class="code-block">
+                    <pre><code># Download nsha-darwin-amd64 (Intel) or nsha-darwin-arm64 (Apple Silicon)
+# Open terminal
+# Navigate to the download folder
+cd ~/Downloads
+
+# Make it executable
+chmod +x nsha-darwin-amd64
+
+# Run NSHA directly
+./nsha-darwin-amd64 --help
+./nsha-darwin-amd64 diagnose
+
+# Optional: Move to system PATH for easier access
+sudo mv nsha-darwin-amd64 /usr/local/bin/nsha
+nsha --help</code></pre>
+                </div>
+
+                <h3>Verify It's Working</h3>
+                <p>Test NSHA with these simple commands:</p>
                 <div class="code-block">
                     <pre><code># Check version
 nsha --version
@@ -918,7 +909,7 @@ git push origin --force --tags
                 <div class="footer-section">
                     <h3><i class="fas fa-tools"></i> NSHA</h3>
                     <p>A powerful CLI tool to fix null SHA issues in Git repositories.</p>
-                    <p class="footer-version"><i class="fas fa-code-branch"></i> Version 1.3.0</p>
+                    <p class="footer-version">v1.3.0</p>
                 </div>
                 <div class="footer-section">
                     <h4>Documentation</h4>
@@ -946,8 +937,8 @@ git push origin --force --tags
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 NSHA Tool. Licensed under MIT License.</p>
-                <p>Created by Rahul</p>
+                <p>&copy; 2026 NSHA Tool. Licensed under MIT License.</p>
+                <p>Author: Rahul G S</p>
             </div>
         </div>
     </footer>
