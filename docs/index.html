@@ -28,6 +28,7 @@
                 <li><a href="#demo" class="nav-link">Demo</a></li>
                 <li><a href="#architecture" class="nav-link">Architecture</a></li>
                 <li><a href="#troubleshooting" class="nav-link">Troubleshooting</a></li>
+                <li><a href="#try-it-out" class="nav-link">Try It Out</a></li>
             </ul>
         </div>
     </nav>
@@ -888,6 +889,63 @@ git push origin --force --tags
         </div>
     </section>
 
+    <!-- Try It Out Section -->
+    <section id="try-it-out" class="docs-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Try It Out</h2>
+            <div class="docs-content" style="background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                <h3><i class="fas fa-flask"></i> Sample Repository with Null SHA Issues</h3>
+                <p class="lead">Want to see NSHA in action? Download our sample repository that contains real null SHA issues and test the tool yourself!</p>
+
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0; border-left: 4px solid #667eea;">
+                    <h4 style="margin-top: 0; color: #667eea;"><i class="fas fa-info-circle"></i> What's Inside</h4>
+                    <p>This sample repository (<code>nullsha-repo.zip</code>) contains a Git repository with intentionally corrupted references:</p>
+                    <ul style="margin-bottom: 0;">
+                        <li><strong>Null SHA references:</strong> Branches and tags pointing to <code>0000000000000000000000000000000000000000</code></li>
+                        <li><strong>Missing commits:</strong> References pointing to non-existent commit objects</li>
+                        <li><strong>Broken parents:</strong> Commits with invalid parent references</li>
+                        <li><strong>Corrupted trees:</strong> Tree objects with null SHA entries</li>
+                    </ul>
+                </div>
+
+                <h4><i class="fas fa-rocket"></i> How to Use</h4>
+                <div class="code-block">
+                    <pre><code># 1. Download and extract the sample repository
+# (Click the button below to download nullsha-repo.zip)
+
+# 2. Extract the zip file
+unzip nullsha-repo.zip
+cd nullsha-repo
+
+# 3. Diagnose the issues
+nsha diagnose
+
+# 4. Preview the fix (dry-run)
+nsha fix --dry-run
+
+# 5. Apply the fix
+nsha fix
+
+# 6. Verify the repository is fixed
+nsha verify</code></pre>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="nullsha-repo.zip" download="nullsha-repo.zip" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;">
+                        <i class="fas fa-download"></i> Download Sample Repository
+                    </a>
+                    <p style="margin-top: 1rem; color: #666; font-size: 0.9rem;">
+                        <i class="fas fa-file-archive"></i> nullsha-repo.zip (~50 KB)
+                    </p>
+                </div>
+
+                <div style="background: #fff3cd; padding: 1rem; border-radius: 8px; margin-top: 2rem; border-left: 4px solid #ffc107;">
+                    <p style="margin: 0;"><strong><i class="fas fa-exclamation-triangle"></i> Note:</strong> This is a sample repository for testing purposes only. It contains intentional corruption to demonstrate NSHA's capabilities. Do not use it for production work.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Comments Section (Utterances) -->
     <section id="comments" class="comments">
         <div class="container">
@@ -929,6 +987,7 @@ git push origin --force --tags
                         <li><a href="#home">Home</a></li>
                         <li><a href="#download">Download</a></li>
                         <li><a href="#demo">Demo</a></li>
+                        <li><a href="#try-it-out">Try It Out</a></li>
                         <li><a href="#troubleshooting">Troubleshooting</a></li>
                     </ul>
                 </div>
