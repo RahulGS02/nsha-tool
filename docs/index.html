@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="NSHA - Null SHA Fixer. A powerful CLI tool to detect and fix null SHA issues in Git repositories.">
+    <meta name="description" content="NSHA - Null SHA Fixer. A CLI tool to detect and fix null SHA issues in Git repositories.">
     <title>NSHA - Null SHA Fixer</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -37,7 +37,7 @@
         <div class="container">
             <div class="hero-content">
                 <h1>NSHA - Null SHA Fixer</h1>
-                <p class="hero-subtitle">A powerful CLI tool to detect and fix null SHA issues in Git repositories</p>
+                <p class="hero-subtitle">A CLI tool to fix null SHA issues in Git repositories</p>
                 <div class="hero-buttons">
                     <a id="download-primary" href="#download" class="btn btn-primary">
                         <i class="fas fa-download"></i> Download for <span id="os-name">Your OS</span>
@@ -159,7 +159,7 @@ nsha --help</code></pre>
         <div class="container">
             <h2 class="section-title">Overview</h2>
             <div class="docs-content">
-                <p class="lead">NSHA (Null SHA Fixer) is a powerful command-line tool designed to detect and fix null SHA (<code>0000000...</code>) and broken tree object issues in Git repositories. NSHA provides a comprehensive solution for repository corruption issues with maximum performance and reliability.</p>
+                <p class="lead">NSHA (Null SHA Fixer) is a command-line tool to detect and fix null SHA (<code>0000000...</code>) and broken tree object issues in Git repositories.</p>
 
                 <h3>What is a Null SHA Issue?</h3>
                 <p>A null SHA issue occurs when Git references (branches, tags, or commits) point to invalid or non-existent objects, typically represented as <code>0000000000000000000000000000000000000000</code>. These issues can cause:</p>
@@ -179,7 +179,7 @@ nsha --help</code></pre>
                     </div>
                     <div class="capability-item">
                         <h4><i class="fas fa-wrench"></i> Fix</h4>
-                        <p>Automated repair using git replace/graft and history rewriting. Includes dry-run mode to preview changes before applying.</p>
+                        <p>Automated repair with history rewriting when needed. Includes dry-run mode to preview changes before applying.</p>
                     </div>
                     <div class="capability-item">
                         <h4><i class="fas fa-check-circle"></i> Verify</h4>
@@ -199,7 +199,7 @@ nsha --help</code></pre>
                     <li><strong>Comprehensive Logging:</strong> Detailed logs and reports saved to user's home directory</li>
                     <li><strong>Beautiful CLI:</strong> Colored output with progress indicators for better user experience</li>
                     <li><strong>Multiple Issue Types:</strong> Detects and fixes null SHA, missing commits, broken parents, and corrupted trees</li>
-                    <li><strong>History Rewriting:</strong> Built-in git-filter-repo functionality for complex repairs</li>
+                    <li><strong>History Rewriting:</strong> Rewrites repository history to fix corrupted commits and trees</li>
                     <li><strong>Garbage Collection:</strong> Automatic cleanup of orphaned objects after fixes</li>
                 </ul>
 
@@ -587,10 +587,10 @@ git push origin --force --tags</code></pre>
                         <div class="step-number">5</div>
                         <div class="step-content">
                             <h4>History Rewriting</h4>
-                            <p>Implements git-filter-repo functionality:</p>
+                            <p>Rewrites corrupted repository history:</p>
                             <ul>
                                 <li>Walks the entire commit graph</li>
-                                <li>Rewrites commits with updated parents and trees</li>
+                                <li>Rewrites commits with corrected parents and trees</li>
                                 <li>Updates all branches and tags</li>
                                 <li>Preserves commit metadata (author, date, message)</li>
                             </ul>
@@ -911,7 +911,7 @@ git push origin --force --tags
             <div class="footer-content">
                 <div class="footer-section">
                     <h3><i class="fas fa-tools"></i> NSHA</h3>
-                    <p>A powerful CLI tool to fix null SHA issues in Git repositories.</p>
+                    <p>A CLI tool to fix null SHA issues in Git repositories.</p>
                     <p class="footer-version">v1.3.0</p>
                 </div>
                 <div class="footer-section">
