@@ -16,15 +16,18 @@
                 <i class="fas fa-tools"></i>
                 <span>NSHA</span>
             </div>
-            <ul class="nav-menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#overview">Overview</a></li>
-                <li><a href="#installation">Installation</a></li>
-                <li><a href="#usage">Usage</a></li>
-                <li><a href="#download">Download</a></li>
-                <li><a href="#demo">Demo</a></li>
-                <li><a href="#architecture">Architecture</a></li>
-                <li><a href="#troubleshooting">Troubleshooting</a></li>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#overview" class="nav-link">Overview</a></li>
+                <li><a href="#installation" class="nav-link">Installation</a></li>
+                <li><a href="#usage" class="nav-link">Usage</a></li>
+                <li><a href="#download" class="nav-link">Download</a></li>
+                <li><a href="#demo" class="nav-link">Demo</a></li>
+                <li><a href="#architecture" class="nav-link">Architecture</a></li>
+                <li><a href="#troubleshooting" class="nav-link">Troubleshooting</a></li>
             </ul>
         </div>
     </nav>
@@ -156,7 +159,7 @@ nsha --help</code></pre>
         <div class="container">
             <h2 class="section-title">Overview</h2>
             <div class="docs-content">
-                <p class="lead">NSHA (Null SHA Fixer) is a powerful command-line tool designed to detect and fix null SHA (<code>0000000...</code>) and broken tree object issues in Git repositories. Built with Go for maximum performance and reliability, NSHA provides a comprehensive solution for repository corruption issues.</p>
+                <p class="lead">NSHA (Null SHA Fixer) is a powerful command-line tool designed to detect and fix null SHA (<code>0000000...</code>) and broken tree object issues in Git repositories. NSHA provides a comprehensive solution for repository corruption issues with maximum performance and reliability.</p>
 
                 <h3>What is a Null SHA Issue?</h3>
                 <p>A null SHA issue occurs when Git references (branches, tags, or commits) point to invalid or non-existent objects, typically represented as <code>0000000000000000000000000000000000000000</code>. These issues can cause:</p>
@@ -190,7 +193,7 @@ nsha --help</code></pre>
 
                 <h3>Core Features</h3>
                 <ul class="feature-list">
-                    <li><strong>Fast Performance:</strong> Written in Go for maximum speed and efficiency</li>
+                    <li><strong>Fast Performance:</strong> Optimized for maximum speed and efficiency</li>
                     <li><strong>Cross-Platform:</strong> Native support for Windows, Linux, and macOS (Intel and ARM)</li>
                     <li><strong>Safe Operations:</strong> Automatic backups and dry-run mode prevent data loss</li>
                     <li><strong>Comprehensive Logging:</strong> Detailed logs and reports saved to user's home directory</li>
@@ -584,7 +587,7 @@ git push origin --force --tags</code></pre>
                         <div class="step-number">5</div>
                         <div class="step-content">
                             <h4>History Rewriting</h4>
-                            <p>Implements git-filter-repo functionality in Go:</p>
+                            <p>Implements git-filter-repo functionality:</p>
                             <ul>
                                 <li>Walks the entire commit graph</li>
                                 <li>Rewrites commits with updated parents and trees</li>

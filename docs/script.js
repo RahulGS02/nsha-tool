@@ -1,15 +1,23 @@
 // OS Detection
 function detectOS() {
-    const userAgent = window.navigator.userAgent;
+    const userAgent = window.navigator.userAgent.toLowerCase();
     const platform = window.navigator.platform;
     const macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'];
     const windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'];
-    
+
+    // Check for mobile devices first
+    const isMobile = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
+
+    // Detect specific OS
     if (macosPlatforms.indexOf(platform) !== -1) {
         return 'macOS';
+    } else if (/iphone|ipad|ipod/.test(userAgent)) {
+        return 'iOS';
     } else if (windowsPlatforms.indexOf(platform) !== -1) {
         return 'Windows';
-    } else if (/Linux/.test(platform)) {
+    } else if (/android/.test(userAgent)) {
+        return 'Android';
+    } else if (/linux/.test(userAgent) || /Linux/.test(platform)) {
         return 'Linux';
     }
     return 'Unknown';
@@ -28,8 +36,29 @@ function updateDownloadButton() {
     // Set download link based on OS
     if (downloadBtn) {
         let platform = 'linux-amd64';
-        if (os === 'Windows') platform = 'windows-amd64';
-        else if (os === 'macOS') platform = 'darwin-amd64';
+        let displayOS = os;
+
+        // Map OS to download platform
+        if (os === 'Windows') {
+            platform = 'windows-amd64';
+        } else if (os === 'macOS' || os === 'iOS') {
+            platform = 'darwin-amd64';
+            displayOS = 'macOS'; // Show macOS for iOS devices
+        } else if (os === 'Android') {
+            platform = 'linux-amd64'; // Default to Linux for Android
+            displayOS = 'Linux'; // Show Linux for Android devices
+        } else if (os === 'Linux') {
+            platform = 'linux-amd64';
+        } else {
+            // For Unknown OS, default to Linux
+            platform = 'linux-amd64';
+            displayOS = 'Linux';
+        }
+
+        // Update the display text
+        if (osNameSpan) {
+            osNameSpan.textContent = displayOS;
+        }
 
         const fileName = `nsha-${platform}${os === 'Windows' ? '.exe' : ''}`;
 
@@ -73,7 +102,7 @@ function updateDownloadButton() {
                 alert('Download failed. Please try again or use the platform-specific download buttons below.');
 
                 // Restore button
-                downloadBtn.innerHTML = '<i class="fas fa-download"></i> Download for <span id="os-name">' + os + '</span>';
+                downloadBtn.innerHTML = '<i class="fas fa-download"></i> Download for <span id="os-name">' + displayOS + '</span>';
                 downloadBtn.style.pointerEvents = 'auto';
             }
         };
@@ -350,6 +379,50 @@ function animateHeroTerminal() {
     });
 }
 
+// Handle mobile menu
+function setupMobileMenu() {
+    const navToggle = document.getElementById('nav-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    if (!navToggle || !navMenu) return;
+
+    // Toggle menu on button click
+    navToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+
+        // Change icon
+        const icon = navToggle.querySelector('i');
+        if (navMenu.classList.contains('active')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+        } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+    });
+
+    // Close menu when clicking on a link
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            const icon = navToggle.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
+            navMenu.classList.remove('active');
+            const icon = navToggle.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+    });
+}
+
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     updateDownloadButton();
@@ -359,15 +432,11 @@ document.addEventListener('DOMContentLoaded', () => {
     setupDownloadTracking();
     setupDemoTerminal();
     animateHeroTerminal();
+    setupMobileMenu();
 
     // Refresh stats every 5 minutes
     setInterval(fetchGitHubStats, 5 * 60 * 1000);
 });
-
-// Handle mobile menu (if needed in future)
-function setupMobileMenu() {
-    // Add mobile menu toggle functionality here if needed
-}
 
 // Analytics tracking (if Google Analytics is loaded)
 if (typeof gtag !== 'undefined') {
